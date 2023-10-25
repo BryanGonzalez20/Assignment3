@@ -1,4 +1,5 @@
 #include "playRobot.h"
+#include <fstream>
 
 
 PlayRobot::PlayRobot():
@@ -293,13 +294,32 @@ void PlayRobot::playRobots(Point coinLocationArray[]) {
 
     if (playRobot1.getNumMovesRobot1() > playRobot2.getNumMovesRobot2()){
         cout << "Robot 2 collected the coins in less moves. Robot 2 wins" << endl;
+        playRobot2.highScoreRobot2++;
     }
     else if (playRobot2.getNumMovesRobot2() > playRobot1.getNumMovesRobot1()){
         cout << "Robot 1 collected the coins in less moves. Robot 1 wins" << endl;
+        playRobot2.highScoreRobot1++;
     }
     else{
         cout << "Both robots took the same amount of moves. TIE!" << endl;
     }
+
+
+    // OUTPUT
+    fstream myFile;
+    myFile.open("gameOutput.txt", ios::out); // Writing to a text file
+    if(myFile.is_open()){
+        myFile << "Number of Moves:\n"
+                  "Robot 1: " << playRobot1.numMovesRobot1 << endl <<
+                  "Robot 2: " << playRobot2.numMovesRobot2 << endl << endl <<
+
+
+                  "High Score (Wins):\n"
+                  "Robot 1 Wins: " << playRobot1.highScoreRobot1 << endl <<
+                  "Robot 2 Wins: " << playRobot2.highScoreRobot2 << endl;
+
+    }
+
 
 
 }
@@ -312,4 +332,5 @@ int PlayRobot::getNumMovesRobot1(){
 int PlayRobot::getNumMovesRobot2(){
     return numMovesRobot2;
 }
+
 

@@ -28,6 +28,10 @@ private:
     int previousX2;
     int previousY2;
 
+    // High Score
+    int highScoreRobot1 = 0;
+    int highScoreRobot2 = 0;
+
 
 
 
@@ -57,6 +61,8 @@ public:
     // getters
     int getNumMovesRobot1();
     int getNumMovesRobot2();
+
+
 };
 
 #endif
